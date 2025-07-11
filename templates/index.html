@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Crop Recommendation System</h1>
+            <p>Enter environmental and soil parameters to get the best crop recommendation.</p>
+        </header>
+
+        <form action="/predict" method="POST" class="grid-form">
+            <div class="form-group">
+                <label for="N">Nitrogen (N):</label>
+                <input type="number" step="any" name="N" id="N" required>
+            </div>
+
+            <div class="form-group">
+                <label for="P">Phosphorus (P):</label>
+                <input type="number" step="any" name="P" id="P" required>
+            </div>
+
+            <div class="form-group">
+                <label for="K">Potassium (K):</label>
+                <input type="number" step="any" name="K" id="K" required>
+            </div>
+
+            <div class="form-group">
+                <label for="temperature">Temperature (°C):</label>
+                <input type="number" step="any" name="temperature" id="temperature" required>
+            </div>
+
+            <div class="form-group">
+                <label for="humidity">Humidity (%):</label>
+                <input type="number" step="any" name="humidity" id="humidity" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ph">Soil pH:</label>
+                <input type="number" step="any" name="ph" id="ph" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="rainfall">Rainfall (mm):</label>
+                <input type="number" step="any" name="rainfall" id="rainfall" required>
+            </div>
+
+            <div class="form-group full-width">
+                <button type="submit">Get Recommendation</button>
+            </div>
+        </form>
+
+        {% if prediction %}
+        <div id="result">
+            <h2>Recommended Crop:</h2>
+            <p id="cropName">{{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
